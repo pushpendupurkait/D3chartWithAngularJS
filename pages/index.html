@@ -1,0 +1,63 @@
+<html>
+	<head>
+		<title>D3 Charts</title>
+		<meta charset="utf-8">
+		<script type="text/javascript" src="../js/d3.min.js"></script>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var margin = 20;
+			var data = [30,20,60,20];
+			
+			var lineData = [ {'x':0,'y':70}, { "x": 40,   "y": 10},  { "x": 80,  "y": 340},
+			                 { "x": 120,  "y": 290}, { "x": 160,  "y": 40},
+			                 { "x": 200,  "y": 130},  { "x": 240, "y": 160}];
+			var width = 400;
+			var height =400;
+			
+			var lineFunction = d3.svg.line()
+								.x(function(d) { 
+									return margin+d.x; 
+									})
+								.y(function(d) { 
+									return height-margin-d.y; 
+									})
+								.interpolate("linear");
+				
+			
+			var div = d3.select('body')
+						.append('div');
+						
+			var svg = div.append('svg:svg')
+						.attr('width',width)
+						.attr('height',height)
+						.style('background-color','#99aaaa');
+			svg.append('circle')
+					.attr('r',30).attr('cx',50).attr('cy',50).style('fill',"#9900aa");
+			var graphSvg = div.append('svg:svg')
+							.attr("width", width)
+							.attr("height", height)
+							.style('background-color','#eee');
+			//horinzontal line x axis
+			graphSvg.append('line')
+					.style('stroke','#aaa')
+					.attr('x1',function(d){return margin})
+					.attr('y1',function(d){return height-margin})
+					.attr('x2',function(d){return width-margin})
+					.attr('y2',function(d){return height-margin});
+			//vartical line x axis
+			graphSvg.append('line')
+					.style('stroke','#aaa')
+					.attr('x1',function(d){return margin})
+					.attr('y1',function(d){return height-margin})
+					.attr('x2',function(d){return margin})
+					.attr('y2',function(d){return margin})
+					
+			graphSvg.append('path')
+					.style('stroke','rgba(200,200,100,0.6)')
+					.attr("stroke-width", 2)
+					.attr('d',lineFunction(lineData))
+					.attr("fill", "none");
+		</script>
+	</body>
+</html>

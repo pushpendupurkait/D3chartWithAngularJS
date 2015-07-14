@@ -1,0 +1,22 @@
+path {
+	stroke: steelblue;
+	stroke-width: 2;
+	fill: none;
+}
+
+line {
+	stroke: black;
+}
+
+.xGrids {
+	stroke: lightgray;
+}
+
+.yGrids {
+	stroke: lightgray;
+}
+
+text {
+	font-family: Verdana;
+	font-size: 9pt;
+}
